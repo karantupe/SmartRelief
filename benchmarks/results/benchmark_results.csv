@@ -1,0 +1,17 @@
+item_count,algorithm,total_value,total_weight,capacity,optimal_value,optimality_gap_percent,median_time_ms,states_explored,feasible,consistent,optimal
+10,Recursive,530,48,50,530,0,1.911596,0,true,true,true
+10,Branch and Bound,530,48,50,530,0,0.252702,113,true,true,true
+15,Recursive,658,73,75,658,0,25.849178,0,true,true,true
+15,Branch and Bound,658,73,75,658,0,0.841336,613,true,true,true
+20,Recursive,878,98,100,878,0,803.293124,0,true,true,true
+20,Branch and Bound,878,98,100,878,0,1.420392,1016,true,true,true
+10,Dynamic Programming,530,48,50,530,0,0.034914,0,true,true,true
+10,Greedy,530,48,50,530,0,0.005887,10,true,true,true
+20,Dynamic Programming,878,98,100,878,0,0.132426,0,true,true,true
+20,Greedy,875,97,100,878,0.34168565,0.012328,20,true,true,false
+50,Dynamic Programming,2154,250,250,2154,0,0.743645,0,true,true,true
+50,Greedy,2145,249,250,2154,0.4178273,0.033831,50,true,true,false
+100,Dynamic Programming,4703,500,500,4703,0,3.105802,0,true,true,true
+100,Greedy,4686,495,500,4703,0.3614714,0.067698,100,true,true,false
+200,Dynamic Programming,9107,1000,1000,9107,0,9.193666,0,true,true,true
+200,Greedy,9104,999,1000,9107,0.032941693,0.176318,200,true,true,false

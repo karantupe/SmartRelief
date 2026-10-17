@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f2f3f8">
+    <title>SmartRelief | Disaster Response Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}" defer></script>
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <a class="brand" href="/">
+                <span class="brand-icon">S</span>
+                <span>SmartRelief</span>
+            </a>
+
+            <p class="nav-label">WORKSPACE</p>
+            <a class="nav-link active" href="#overview"><span>▦</span> Dashboard</a>
+            <a class="nav-link" href="#mission"><span>◇</span> Payload Optimizer</a>
+            <a class="nav-link" href="#comparison"><span>▥</span> Algorithm Comparison</a>
+            <a class="nav-link" href="#benchmarks"><span>▤</span> Benchmarks</a>
+
+            <p class="nav-label">PROJECT</p>
+            <a class="nav-link" href="/about"><span>ⓘ</span> About SmartRelief</a>
+
+            <div class="sidebar-note">
+                <div class="mini-drone">✦</div>
+                <strong>Relief, optimized.</strong>
+                <p>Smarter payloads. Better resource allocation.</p>
+                <a href="/about">Explore the project →</a>
+            </div>
+
+            <div class="sidebar-footer">SmartRelief · C++20</div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <span class="breadcrumb">Workspace /</span>
+                    <strong>Disaster Response</strong>
+                </div>
+                <div class="topbar-right">
+                    <span class="live-dot"></span>
+                    <span>Optimization engine</span>
+                    <span class="engine-pill">ONLINE</span>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <section class="welcome-row" id="overview">
+                    <div>
+                        <p class="eyebrow">DISASTER RESPONSE INTELLIGENCE</p>
+                        <h1>Mission dashboard</h1>
+                        <p class="muted">Plan smarter deliveries when every kilogram matters.</p>
+                    </div>
+                    <a class="button button-outline" href="/about">About the project ↗</a>
+                </section>
+
+                <section class="drone-banner">
+                    <div class="banner-copy">
+                        <span class="banner-tag">SMART PAYLOAD PLANNING</span>
+                        <h2>Deliver more.<br>Waste less capacity.</h2>
+                        <p>
+                            Select the most valuable relief supplies within your
+                            drone's payload limit using four optimization algorithms.
+                        </p>
+                        <a class="button button-white" href="#mission">Plan a mission →</a>
+                    </div>
+
+                    <div class="flight-scene" aria-label="Animated drone carrying relief supplies toward a disaster zone">
+                        <div class="scene-sun"></div>
+                        <div class="mountain mountain-back"></div>
+                        <div class="mountain mountain-front"></div>
+                        <div class="flight-path"></div>
+
+                        <div class="origin-point">
+                            <span class="map-pin">●</span>
+                            <span>RELIEF HUB</span>
+                        </div>
+
+                        <div class="destination-point">
+                            <span class="map-pin destination-pin">●</span>
+                            <span>DISASTER ZONE</span>
+                        </div>
+
+                        <div class="flying-drone" aria-hidden="true">
+                            <svg viewBox="0 0 220 130" role="img">
+                                <path d="M63 52 L93 67 M157 52 L127 67"
+                                      stroke="#33435b" stroke-width="8" stroke-linecap="round"/>
+                                <path d="M94 64 L126 64 L141 82 L79 82 Z"
+                                      fill="#33435b"/>
+                                <path d="M99 68 L121 68 L128 78 L92 78 Z"
+                                      fill="#61dfb2"/>
+                                <rect x="25" y="43" width="56" height="8" rx="4"
+                                      fill="#34445d"/>
+                                <rect x="139" y="43" width="56" height="8" rx="4"
+                                      fill="#34445d"/>
+                                <ellipse cx="53" cy="42" rx="33" ry="5"
+                                         fill="#64748b" opacity=".7"/>
+                                <ellipse cx="167" cy="42" rx="33" ry="5"
+                                         fill="#64748b" opacity=".7"/>
+                                <circle cx="53" cy="45" r="8" fill="#4e6de0"/>
+                                <circle cx="167" cy="45" r="8" fill="#4e6de0"/>
+                                <path d="M91 82 L85 94 M129 82 L135 94"
+                                      stroke="#34445d" stroke-width="4" stroke-linecap="round"/>
+                                <rect x="91" y="88" width="38" height="23" rx="5"
+                                      fill="#f7b955" stroke="#ffffff" stroke-width="2"/>
+                                <path d="M99 95 H121 M99 101 H121"
+                                      stroke="#98621a" stroke-width="2"/>
+                                <circle cx="110" cy="66" r="5" fill="#f8fafc"/>
+                            </svg>
+                            <span class="drone-shadow"></span>
+                        </div>
+
+                        <div class="scene-caption">SUPPLIES IN TRANSIT</div>
+                    </div>
+                </section>
+
+                <section class="stats-grid">
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-icon pink">◇</span>
+                            <span class="stat-label">Best relief value</span>
+                        </div>
+                        <strong id="overview-value">—</strong>
+                        <span class="stat-foot">From your latest optimization</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-icon green">↗</span>
+                            <span class="stat-label">Payload utilization</span>
+                        </div>
+                        <strong id="overview-utilization">—</strong>
+                        <span class="stat-foot">Weight used versus capacity</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-icon purple">▦</span>
+                            <span class="stat-label">Selected supplies</span>
+                        </div>
+                        <strong id="overview-items">—</strong>
+                        <span class="stat-foot">Items in the selected solution</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-icon orange">◷</span>
+                            <span class="stat-label">Algorithm runtime</span>
+                        </div>
+                        <strong id="overview-runtime">—</strong>
+                        <span class="stat-foot">Measured inside the C++ engine</span>
+                    </article>
+                </section>
+
+                <section class="content-grid" id="mission">
+                    <article class="card mission-card">
+                        <div class="card-heading">
+                            <div>
+                                <p class="eyebrow">MISSION CONFIGURATION</p>
+                                <h2>Relief payload</h2>
+                            </div>
+                            <span class="small-pill">0/1 Knapsack</span>
+                        </div>
+
+                        <p class="muted">
+                            Choose which indivisible supplies fit into the drone's capacity.
+                        </p>
+
+                        <label for="capacity">Maximum payload (kg)</label>
+                        <input id="capacity" type="number" min="0" step="1" value="10">
+
+                        <div class="items-heading">
+                            <h3>Available supplies</h3>
+                            <button id="add-item" class="button button-outline button-small" type="button">
+                                + Add item
+                            </button>
+                        </div>
+
+                        <div class="items-header">
+                            <span>Supply</span>
+                            <span>Weight</span>
+                            <span>Value</span>
+                            <span></span>
+                        </div>
+                        <div id="items-list"></div>
+
+                        <label for="algorithm">Choose algorithm</label>
+                        <select id="algorithm">
+                            <option value="dp">Dynamic Programming</option>
+                            <option value="recursive">Recursive Backtracking</option>
+                            <option value="greedy">Greedy</option>
+                            <option value="branch_bound">Branch and Bound</option>
+                        </select>
+
+                        <button id="optimize" class="button button-primary full-width" type="button">
+                            Optimize payload <span>→</span>
+                        </button>
+                        <button id="compare" class="button button-outline full-width" type="button">
+                            Compare all four algorithms
+                        </button>
+                        <p id="message" class="message" role="status" aria-live="polite"></p>
+                    </article>
+
+                    <article class="card result-card">
+                        <div class="card-heading">
+                            <div>
+                                <p class="eyebrow">OPTIMIZATION OUTPUT</p>
+                                <h2 id="result-title">Mission results</h2>
+                            </div>
+                            <span id="result-status" class="result-badge">AWAITING RUN</span>
+                        </div>
+                        <p class="muted" id="result-subtitle">
+                            Run an algorithm to see the recommended payload.
+                        </p>
+
+                        <div class="result-metrics">
+                            <div>
+                                <span>Total value</span>
+                                <strong id="total-value">—</strong>
+                            </div>
+                            <div>
+                                <span>Payload weight</span>
+                                <strong id="total-weight">—</strong>
+                            </div>
+                            <div>
+                                <span>Items selected</span>
+                                <strong id="selected-count">—</strong>
+                            </div>
+                            <div>
+                                <span>Execution time</span>
+                                <strong id="result-runtime">—</strong>
+                            </div>
+                        </div>
+
+                        <div class="capacity-heading">
+                            <span>Capacity used</span>
+                            <strong id="capacity-percent">—</strong>
+                        </div>
+                        <div class="progress-track">
+                            <div id="capacity-progress" class="progress-fill"></div>
+                        </div>
+
+                        <h3 class="subsection-title">Recommended supplies</h3>
+                        <div id="selected-items" class="selected-items">
+                            <p class="muted">Your selected supplies will appear here.</p>
+                        </div>
+                        <p class="states-note">
+                            Search states explored: <strong id="states-explored">—</strong>
+                        </p>
+                    </article>
+                </section>
+
+                <section class="section-block" id="comparison">
+                    <div class="section-title-row">
+                        <div>
+                            <p class="eyebrow">ALGORITHM INTELLIGENCE</p>
+                            <h2>Compare the strategies</h2>
+                            <p class="muted">
+                                All four algorithms receive the same mission input.
+                            </p>
+                        </div>
+                        <button id="compare-top" class="button button-primary" type="button">
+                            Run comparison →
+                        </button>
+                    </div>
+
+                    <div class="chart-grid">
+                        <article class="card">
+                            <div class="card-heading">
+                                <h3>Solution quality</h3>
+                                <span class="chart-unit">Relief value</span>
+                            </div>
+                            <p class="muted">Higher values indicate more total relief value.</p>
+                            <div class="chart-wrap">
+                                <canvas id="value-chart" aria-label="Algorithm solution values"></canvas>
+                            </div>
+                        </article>
+
+                        <article class="card">
+                            <div class="card-heading">
+                                <h3>Execution performance</h3>
+                                <span class="chart-unit">Milliseconds</span>
+                            </div>
+                            <p class="muted">C++ algorithm execution time, excluding API overhead.</p>
+                            <div class="chart-wrap">
+                                <canvas id="runtime-chart" aria-label="Algorithm runtimes in milliseconds"></canvas>
+                            </div>
+                        </article>
+                    </div>
+
+                    <article class="card table-card">
+                        <div class="card-heading">
+                            <h3>Comparison report</h3>
+                            <span class="small-pill">Same input</span>
+                        </div>
+                        <div class="table-scroll">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Algorithm</th>
+                                        <th>Total value</th>
+                                        <th>Weight</th>
+                                        <th>Runtime (ms)</th>
+                                        <th>Optimality gap</th>
+                                        <th>Feasible</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="comparison-table">
+                                    <tr><td colspan="6" class="muted">Run a comparison to populate this report.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="section-block" id="benchmarks">
+                    <div class="section-title-row">
+                        <div>
+                            <p class="eyebrow">EXPERIMENTAL RESULTS</p>
+                            <h2>Benchmark laboratory</h2>
+                            <p class="muted">
+                                Historical measurements generated by your C++ benchmark program.
+                            </p>
+                        </div>
+                        <button id="refresh-benchmarks" class="button button-outline" type="button">
+                            Refresh data ↻
+                        </button>
+                    </div>
+
+                    <article class="card">
+                        <div class="benchmark-controls">
+                            <div>
+                                <label for="benchmark-algorithm">Algorithm</label>
+                                <select id="benchmark-algorithm">
+                                    <option value="all">All algorithms</option>
+                                    <option value="Recursive">Recursive</option>
+                                    <option value="Dynamic Programming">Dynamic Programming</option>
+                                    <option value="Greedy">Greedy</option>
+                                    <option value="Branch and Bound">Branch and Bound</option>
+                                </select>
+                            </div>
+                            <p id="benchmark-status" class="muted">Benchmark data has not been loaded yet.</p>
+                        </div>
+
+                        <div class="chart-wrap benchmark-chart-wrap">
+                            <canvas id="benchmark-chart" aria-label="Historical benchmark runtimes by item count"></canvas>
+                        </div>
+
+                        <div class="table-scroll">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Items</th>
+                                        <th>Algorithm</th>
+                                        <th>Value</th>
+                                        <th>Runtime (ms)</th>
+                                        <th>Optimal</th>
+                                        <th>Feasible</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="benchmark-table">
+                                    <tr><td colspan="6" class="muted">Load benchmark data to view results.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="why-section">
+                    <p class="eyebrow">WHY SMARTRELIEF?</p>
+                    <h2>When resources are limited, every decision matters.</h2>
+                    <p class="why-intro">
+                        During a disaster, drones may carry only a limited amount of
+                        medicine, food, water, and emergency equipment. SmartRelief
+                        explores how optimization can help select a valuable,
+                        capacity-feasible combination of supplies.
+                    </p>
+
+                    <div class="why-grid">
+                        <article>
+                            <span class="why-icon">◇</span>
+                            <h3>Limited payloads</h3>
+                            <p>Respect the drone's carrying capacity instead of selecting supplies without considering weight.</p>
+                        </article>
+                        <article>
+                            <span class="why-icon">⌁</span>
+                            <h3>Compare trade-offs</h3>
+                            <p>See how an exact search, a dynamic program, and a fast heuristic behave on the same problem.</p>
+                        </article>
+                        <article>
+                            <span class="why-icon">↗</span>
+                            <h3>Evidence-based decisions</h3>
+                            <p>Use measured runtimes, feasibility checks, and optimality gaps to understand algorithm behaviour.</p>
+                        </article>
+                    </div>
+
+                    <a class="button button-primary" href="/about">Explore the project's purpose and applications →</a>
+                </section>
+
+                <footer class="footer">
+                    <span><strong>SmartRelief</strong> · Disaster relief payload optimization</span>
+                    <span>C++20 · Flask · Chart.js</span>
+                </footer>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

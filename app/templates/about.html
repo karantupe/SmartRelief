@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About SmartRelief | Project & Applications</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <a class="brand" href="/">
+                <span class="brand-icon">S</span>
+                <span>SmartRelief</span>
+            </a>
+
+            <p class="nav-label">WORKSPACE</p>
+            <a class="nav-link" href="/#overview"><span>▦</span> Dashboard</a>
+            <a class="nav-link" href="/#mission"><span>◇</span> Payload Optimizer</a>
+            <a class="nav-link" href="/#comparison"><span>▥</span> Algorithm Comparison</a>
+            <a class="nav-link" href="/#benchmarks"><span>▤</span> Benchmarks</a>
+
+            <p class="nav-label">PROJECT</p>
+            <a class="nav-link active" href="/about"><span>ⓘ</span> About SmartRelief</a>
+
+            <div class="sidebar-note">
+                <div class="mini-drone">✦</div>
+                <strong>Relief, optimized.</strong>
+                <p>Explore the ideas behind the project.</p>
+                <a href="/">Return to dashboard →</a>
+            </div>
+            <div class="sidebar-footer">SmartRelief · C++20</div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div><span class="breadcrumb">Project /</span><strong>About SmartRelief</strong></div>
+                <a class="button button-outline" href="/">← Dashboard</a>
+            </header>
+
+            <div class="page-content">
+                <section class="about-hero">
+                    <p class="eyebrow">THE IDEA BEHIND THE PROJECT</p>
+                    <h1>Better decisions for critical relief supplies.</h1>
+                    <p>
+                        SmartRelief is an educational optimization project that
+                        explores how algorithmic decision-making can help plan
+                        drone payloads for disaster-response scenarios.
+                    </p>
+                    <a class="button button-white" href="/#mission">Try the optimizer →</a>
+                </section>
+
+                <section class="about-section">
+                    <p class="eyebrow">01 · THE PROBLEM</p>
+                    <h2>Why is SmartRelief needed?</h2>
+
+                    <div class="about-grid">
+                        <article class="about-card">
+                            <h3>Limited carrying capacity</h3>
+                            <p>
+                                A drone cannot carry every available supply.
+                                The payload must stay within a maximum weight,
+                                so some items may need to be left behind.
+                            </p>
+                        </article>
+                        <article class="about-card">
+                            <h3>Different supplies, different value</h3>
+                            <p>
+                                Medical kits, food packs, clean water and
+                                emergency equipment have different assigned
+                                values. A good selection maximizes total value
+                                without exceeding capacity.
+                            </p>
+                        </article>
+                        <article class="about-card">
+                            <h3>Time and computing resources</h3>
+                            <p>
+                                Some algorithms can guarantee an optimal
+                                solution but may become expensive as the
+                                number of items grows. Others are fast but
+                                may miss the best combination.
+                            </p>
+                        </article>
+                        <article class="about-card">
+                            <h3>Transparent decisions</h3>
+                            <p>
+                                SmartRelief makes the selected items, total
+                                weight, total value, and algorithm measurements
+                                visible so users can examine the result.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="about-section">
+                    <p class="eyebrow">02 · MATHEMATICAL MODEL</p>
+                    <h2>The 0/1 Knapsack problem</h2>
+
+                    <article class="about-card">
+                        <p>
+                            Each available item has a weight and a value.
+                            Each item is either selected or not selected.
+                            Splitting an item is not allowed.
+                        </p>
+                        <p><strong>Objective:</strong> maximize the total value of selected items.</p>
+                        <p><strong>Constraint:</strong> the sum of selected weights cannot exceed the drone capacity.</p>
+                        <p><strong>Decision:</strong> for every item, choose either 1 (take it) or 0 (leave it).</p>
+                        <div class="about-note">
+                            <strong>Current scope:</strong> SmartRelief currently
+                            models one payload constraint: weight. Real deployments
+                            may also need volume, battery energy, flight range,
+                            urgency, delivery deadlines, and safety constraints.
+                        </div>
+                    </article>
+                </section>
+
+                <section class="about-section">
+                    <p class="eyebrow">03 · WHY COMPARE ALGORITHMS?</p>
+                    <h2>One problem. Four different strategies.</h2>
+                    <p class="muted">
+                        The comparison page runs the algorithms on the same input
+                        so their outputs and performance can be examined fairly.
+                    </p>
+
+                    <div class="algorithm-list">
+                        <article class="algorithm-card">
+                            <span class="algorithm-number">ALGORITHM 01</span>
+                            <h3>Recursive Backtracking</h3>
+                            <p>
+                                Explores include-or-exclude choices recursively.
+                                It is useful for understanding exhaustive search
+                                and can find an optimal solution, but its worst-case
+                                runtime grows exponentially.
+                            </p>
+                        </article>
+                        <article class="algorithm-card">
+                            <span class="algorithm-number">ALGORITHM 02</span>
+                            <h3>Dynamic Programming</h3>
+                            <p>
+                                Reuses solutions to overlapping subproblems.
+                                For the classic integer-capacity knapsack model,
+                                the standard implementation takes O(nW) time,
+                                where n is the number of items and W is capacity.
+                            </p>
+                        </article>
+                        <article class="algorithm-card">
+                            <span class="algorithm-number">ALGORITHM 03</span>
+                            <h3>Greedy</h3>
+                            <p>
+                                Makes local choices, commonly based on value
+                                per unit weight. It is often fast, but for 0/1
+                                knapsack it does not guarantee the optimal result.
+                            </p>
+                        </article>
+                        <article class="algorithm-card">
+                            <span class="algorithm-number">ALGORITHM 04</span>
+                            <h3>Branch and Bound</h3>
+                            <p>
+                                Searches candidate solutions while pruning
+                                branches that cannot beat the best known
+                                solution. It can find an optimum with a valid
+                                bound, though worst-case runtime is exponential.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="about-section">
+                    <p class="eyebrow">04 · MEASUREMENT</p>
+                    <h2>What do the comparisons tell us?</h2>
+
+                    <div class="about-grid">
+                        <article class="about-card">
+                            <h3>Solution value</h3>
+                            <p>How much total assigned relief value was selected?</p>
+                        </article>
+                        <article class="about-card">
+                            <h3>Execution time</h3>
+                            <p>How long did the algorithm itself take to run in C++?</p>
+                        </article>
+                        <article class="about-card">
+                            <h3>Feasibility</h3>
+                            <p>Did the selected items stay within the capacity limit?</p>
+                        </article>
+                        <article class="about-card">
+                            <h3>Optimality gap</h3>
+                            <p>
+                                How far is a candidate solution below the chosen
+                                reference value? A zero gap means equal value to
+                                that reference; it proves optimality only if the
+                                reference is itself known to be optimal.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="about-section">
+                    <p class="eyebrow">05 · POTENTIAL APPLICATIONS</p>
+                    <h2>Where could this idea be useful?</h2>
+
+                    <div class="application-grid">
+                        <article class="application-card">
+                            <h3>Disaster relief</h3>
+                            <p>Explore payload selection for medicine, food, water and emergency kits after floods, earthquakes or storms.</p>
+                        </article>
+                        <article class="application-card">
+                            <h3>Medical delivery</h3>
+                            <p>Model how a limited payload might prioritize medical supplies for remote or hard-to-reach areas.</p>
+                        </article>
+                        <article class="application-card">
+                            <h3>Remote communities</h3>
+                            <p>Study supply selection for locations with difficult road access or disrupted transport.</p>
+                        </article>
+                        <article class="application-card">
+                            <h3>Emergency logistics</h3>
+                            <p>Use the same optimization concepts to examine limited vehicle space, relief kits or warehouse packing.</p>
+                        </article>
+                        <article class="application-card">
+                            <h3>Algorithm education</h3>
+                            <p>Visualize how exact methods, dynamic programming and heuristics differ on reproducible inputs.</p>
+                        </article>
+                        <article class="application-card">
+                            <h3>Future research</h3>
+                            <p>Extend the model with volume, battery, urgency, multiple trips or multi-drone coordination.</p>
+                        </article>
+                    </div>
+
+                    <div class="about-note">
+                        <strong>Important limitation:</strong> SmartRelief is a
+                        learning and simulation project, not a certified emergency
+                        dispatch system. Item values are modeled scores, not clinical
+                        priority assessments. Real relief operations require expert
+                        oversight, safety constraints and validated operational data.
+                    </div>
+                </section>
+
+                <section class="about-section card">
+                    <p class="eyebrow">READY TO EXPLORE?</p>
+                    <h2>See how the algorithms behave on your mission.</h2>
+                    <p class="muted">
+                        Configure a payload, inspect the chosen supplies, and compare
+                        the four strategies with the same input.
+                    </p>
+                    <a class="button button-primary" href="/#mission">Open SmartRelief dashboard →</a>
+                </section>
+
+                <footer class="footer">
+                    <span><strong>SmartRelief</strong> · Disaster relief payload optimization</span>
+                    <span>C++20 · Flask · Chart.js</span>
+                </footer>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
